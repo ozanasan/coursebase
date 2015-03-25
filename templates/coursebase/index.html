@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CourseBase</title>
+        <style type="text/css">  
+            * { color: blue; text-align: center; }
+        </style>
+    </head>
+
+    <body>
+        {% if user.is_authenticated %}
+            <h1>Hello {{ user.username }}!</h1>
+            <br>
+            Popular Topics
+            <br>
+            {% for topic in topics %}
+                <a href="/coursebase/topic/{{ topic.slug }}">  {{ topic.name }}</a><br/>
+            {% endfor %}
+            <br>
+            <br>
+            <br>
+            <a href="/coursebase/topics/">All Topics</a>
+            <br>
+        {% else %}
+            <h1>Welcome to CourseBase</h1>
+        {% endif %}
+        <a href="/coursebase/about/">About</a><br />
+        {% if user.is_authenticated %}
+        <a href="/coursebase/add_topic/">Add a New Topic</a><br />
+        <br>
+        <a href="/coursebase/logout/">Logout</a><br/>
+        {% else %}
+        <br>
+        Please Log In:
+        <br>
+        <a href="/coursebase/login/">Login</a>
+        <br>
+        <br>
+        Or, if you are still not a member, join us:
+        <br>
+        <a href="/coursebase/register/">Register Here</a>
+        <br>
+        <br>
+        Free, and will always be...
+        <br>
+        {% endif %}
+        
+    </body>
+</html>

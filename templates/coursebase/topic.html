@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>CourseBase</title>
+        <style type="text/css">  
+            * { color: blue; text-align: center; }
+        </style>
+    </head>
+
+    <body>
+        <h1>{{ topic_name }}</h1>
+        {{ likecount }} likes at the moment
+
+        <form id="like_form" method="post" action="/coursebase/topic/{{ topic.slug }}/">
+            {% csrf_token %}
+            <input type="submit" name="like" value="like" />
+        </form>
+        <br>
+        <br>
+        {% if topic %}
+            {% if lessons %}
+            
+                {% for lesson in lessons %}
+                <a href="{{ lesson.url }}">{{ lesson.title }}</a>
+                <br>
+                {% endfor %}
+            {% else %}
+                <strong>No lessons currently in topic.</strong>
+            {% endif %}
+        <br>
+        <br>
+        <br>
+        <br>
+        <a href="/coursebase/{{ topic_name_slug }}/add_lesson/">Add a New Lesson</a>
+        <br>
+
+        {% else %}
+            The specified topic {{ topic_name }} does not exist!
+        {% endif %}
+        <br>
+        <br>
+        <a href="/coursebase/"> Return to main screen</a><br />
+    </body>
+</html>
