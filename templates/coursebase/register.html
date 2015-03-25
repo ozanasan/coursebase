@@ -6,10 +6,10 @@
     <body>
         <h1>Register with coursebase</h1>
         {% if registered %}
-        coursebase says: <strong>thank you for registering!</strong>
+        <strong>thank you for registering!</strong>
         <a href="/coursebase/">Return to the homepage.</a><br />
         {% else %}
-        coursebase says: <strong>register here!</strong><br />
+        <strong>register here!</strong><br />
         <form id="user_form" method="post" action="/coursebase/register/"
                 enctype="multipart/form-data">
             {% csrf_token %}
